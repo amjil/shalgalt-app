@@ -1,0 +1,29 @@
+{:source-paths ["src" "test"]
+
+ :dependencies [
+                [applied-science/js-interop "0.3.1"]
+                [cljs-bean "1.7.0"]
+                [com.github.seancorfield/honeysql "2.1.833"]
+                [day8.re-frame/http-fx "0.2.3"]
+                [funcool/promesa "6.0.2"]
+                [tongue "0.4.3"]
+                [reagent "1.1.1"]
+                [re-frame "1.2.0"]
+                [re-frame-steroid "0.1.1"]
+                [rn-shadow-steroid "0.2.8"]]
+                ; [re-frisk-remote "1.5.0"]]
+
+ :builds       {:dev
+                {:target     :react-native
+                 :init-fn    app.core/init
+                 :output-dir "app"
+                 :compiler-options {:closure-defines
+                                    {"re_frame.trace.trace_enabled_QMARK_" true}}
+                 :devtools   {:after-load steroid.rn.core/reload
+                              :build-notify steroid.rn.core/build-notify}}
+                              ; :preloads [re-frisk-remote.preload]}}
+
+                :test
+                {:target    :node-test
+                 :output-to "out/node-tests.js"
+                 :autorun   true}}}
